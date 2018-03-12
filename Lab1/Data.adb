@@ -96,11 +96,11 @@ package body Data is
       return D;
     end Func;
 
-    procedure Put_Matrix(MR: Integer_Matrix) is
+    procedure Put_Matrix(M: Integer_Matrix) is
     begin
-      for i in 1..MR'Length loop
-        for j in 1..MR'Length loop
-          Put(MR(i,i));
+      for i in 1..M'Length loop
+        for j in 1..M'Length loop
+          Put(M(i,i));
         end loop;
         New_Line(1);
       end loop;
