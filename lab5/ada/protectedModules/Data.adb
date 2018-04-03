@@ -3,7 +3,7 @@ with Ada.Integer_Text_IO;
 with Ada.Synchronous_Task_Control;
 use Ada.Integer_Text_IO;
 use Ada.Synchronous_Task_Control;
-use Countdown;
+with CountdownPackage;
 
 --  q = MAX(MH * MK - ML)
 
@@ -71,7 +71,7 @@ package body Data is
 
 
     begin
-      countdown.Secure();
+      countdown.Secure;
 
       for i in 1 .. len loop
         for j in 1 .. len loop
@@ -92,9 +92,9 @@ package body Data is
       return max;
     end Func;
 
-    procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, end: Integer) is
+    procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, until: Integer) is
     begin
-      for i in start..end loop
+      for i in start..until loop
         for j in 1..MH'Length loop
           tmp(i,j) := 0;
 

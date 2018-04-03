@@ -1,30 +1,33 @@
-protected type Countdown (Start_Count : Integer := 1) is
+package CountdownPackage is
 
-    entry Secure;
-    procedure Release;
-    function Count return Integer;
+  protected type Countdown (Start_Count : Integer := 1) is
 
-private
-    Current_Count : Integer := Start_Count;
+      entry Secure;
+      procedure Release;
+      function Count return Integer;
 
-end;
+  private
+      Current_Count : Integer := Start_Count;
+
+  end;
 
 
-protected body Contdown is
+  protected body Contdown is
 
-    entry Secure when Current_Count == 0 is
-    begin
-        Current_Count := Current_Count - 1;
-    end;
+      entry Secure when Current_Count = 0 is
+      begin
+          Current_Count := Current_Count - 1;
+      end;
 
-    procedure Release is
-    begin
-        Current_Count := Current_Count - 1;
-    end;
+      procedure Release is
+      begin
+          Current_Count := Current_Count - 1;
+      end;
 
-    function Count return Integer is
-    begin
-        return Current_Count;
-    end;
+      function Count return Integer is
+      begin
+          return Current_Count;
+      end;
 
-end Countdown;
+  end Countdown;
+end CountdownPackage;
