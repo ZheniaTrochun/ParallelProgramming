@@ -1,18 +1,21 @@
-protected body Countdown is
+package body CountdownPackage is
 
-    entry Secure when Current_Count = 0 is
-    begin
-        Current_Count := Current_Count - 1;
-    end;
+  protected body Countdown is
 
-    procedure Release is
-    begin
-        Current_Count := Current_Count - 1;
-    end;
+      entry Secure when Current_Count = 0 is
+      begin
+          Current_Count := Current_Count - 1;
+      end;
 
-    function Count return Integer is
-    begin
-        return Current_Count;
-    end;
+      procedure Release is
+      begin
+          Current_Count := Current_Count - 1;
+      end;
 
-end Countdown;
+      function Count return Integer is
+      begin
+          return Current_Count;
+      end;
+
+  end Countdown;
+end CountdownPackage;

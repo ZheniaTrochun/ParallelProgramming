@@ -9,7 +9,9 @@ package Data is
 
   countdown: CountdownPackage.Countdown(4);
 
+  tmp: Integer_Matrix(1 .. 10, 1 .. 10);
+
   function Func(MH, MK, ML: Integer_Matrix) return Integer;
-  procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, finish: Integer);
+  procedure Mult_Part(MH, MK: Integer_Matrix; start, finish: Integer);
 
 end Data;

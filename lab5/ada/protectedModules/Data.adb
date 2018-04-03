@@ -11,7 +11,6 @@ use CountdownPackage;
 package body Data is
   function Func(MH,MK,ML: Integer_Matrix) return Integer is
     len: Integer := MH'Length;
-    tmp: Integer_Matrix(1 .. len, 1 .. len);
     max: Integer;
 
     task T1 is
@@ -24,7 +23,7 @@ package body Data is
     task body T1 is
     begin
 
-      mult_part(MH, MK, tmp, 1, len / 4);
+      mult_part(MH, MK, 1, len / 4);
 
     end T1;
 
@@ -38,7 +37,7 @@ package body Data is
     task body T2 is
     begin
 
-      mult_part(MH, MK, tmp, (len / 4) + 1, len / 2);
+      mult_part(MH, MK, (len / 4) + 1, len / 2);
 
     end T2;
 
@@ -52,7 +51,7 @@ package body Data is
     task body T3 is
     begin
 
-      mult_part(MH, MK, tmp, (len / 2) + 1, 3 * len / 4);
+      mult_part(MH, MK, (len / 2) + 1, 3 * len / 4);
 
     end T3;
 
@@ -66,7 +65,7 @@ package body Data is
     task body T4 is
     begin
 
-      mult_part(MH, MK, tmp, (3 * len / 4) + 1, len);
+      mult_part(MH, MK, (3 * len / 4) + 1, len);
 
     end T4;
 
@@ -93,13 +92,13 @@ package body Data is
       return max;
     end Func;
 
-    procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, finish: Integer) is
+    procedure Mult_Part(MH, MK: Integer_Matrix; start, finish: Integer) is
     begin
       for i in start .. finish loop
         for j in 1 .. MH'Length loop
           tmp(i,j) := 0;
 
-          for k in 1..MH'Length loop
+          for k in 1 .. MH'Length loop
             tmp(i,j) := tmp(i,j) + (MH(i,k) * MK(k,j));
           end loop;
 
