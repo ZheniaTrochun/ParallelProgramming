@@ -1,6 +1,7 @@
 with Ada.Synchronous_Task_Control;
 use Ada.Synchronous_Task_Control;
 with CountdownPackage;
+use CountdownPackage;
 
 package Data is
 
@@ -9,6 +10,6 @@ package Data is
   countdown: CountdownPackage.Countdown(4);
 
   function Func(MH, MK, ML: Integer_Matrix) return Integer;
-  procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, until: Integer);
+  procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, finish: Integer);
 
 end Data;
