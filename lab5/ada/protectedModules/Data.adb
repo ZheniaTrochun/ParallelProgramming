@@ -10,7 +10,7 @@ use CountdownPackage;
 
 package body Data is
   function Func(MH,MK,ML: Integer_Matrix) return Integer is
-    len: Integer := A'Length;
+    len: Integer := MH'Length;
     tmp: Integer_Matrix(1 .. len, 1 .. len);
     max: Integer;
 
@@ -95,8 +95,8 @@ package body Data is
 
     procedure Mult_Part(MH, MK, tmp: Integer_Matrix; start, finish: Integer) is
     begin
-      for i in start..finish loop
-        for j in 1..MH'Length loop
+      for i in start .. finish loop
+        for j in 1 .. MH'Length loop
           tmp(i,j) := 0;
 
           for k in 1..MH'Length loop
