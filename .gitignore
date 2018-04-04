@@ -262,3 +262,5 @@ __pycache__/
 
 *.vcxproj
 *.vcxproj.*
+
+lab6/target/
