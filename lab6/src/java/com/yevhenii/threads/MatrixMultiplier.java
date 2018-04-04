@@ -1,7 +1,7 @@
-package com.yevhenii.lab6.threads;
+package com.yevhenii.threads;
 
-import com.yevhenii.lab6.matrices.Matrices;
-import com.yevhenii.lab6.countdown.Countdown;
+import com.yevhenii.countdown.Countdown;
+import com.yevhenii.matrices.Matrices;
 
 public class MatrixMultiplier implements Runnable {
 

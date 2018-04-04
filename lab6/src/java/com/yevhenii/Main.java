@@ -1,9 +1,9 @@
-package com.yevhenii.lab6;
+package com.yevhenii;
 
-import com.yevhenii.lab6.countdown.Countdown;
-import com.yevhenii.lab6.countdown.CountdownImpl;
-import com.yevhenii.lab6.matrices.Matrices;
-import com.yevhenii.lab6.threads.MatrixMultiplier;
+import com.yevhenii.countdown.Countdown;
+import com.yevhenii.countdown.CountdownImpl;
+import com.yevhenii.matrices.Matrices;
+import com.yevhenii.threads.MatrixMultiplier;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {

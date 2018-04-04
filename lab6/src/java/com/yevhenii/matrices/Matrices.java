@@ -1,4 +1,4 @@
-package com.yevhenii.lab6.matrices;
+package com.yevhenii.matrices;
 
 import java.util.Arrays;
 

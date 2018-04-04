@@ -1,4 +1,4 @@
-package com.yevhenii.lab6.countdown;
+package com.yevhenii.countdown;
 
 public interface Countdown {
 
