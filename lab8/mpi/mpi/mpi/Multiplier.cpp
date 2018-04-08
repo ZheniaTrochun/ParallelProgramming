@@ -2,15 +2,19 @@
 #include "Multiplier.h"
 #include "mpi.h"
 #include "DataBlock.h"
+#include <iostream>
+
+using namespace std;
 
 void multiplicator(int initializer, int rank, int collector, int size) {
-	int *metadata;
-	int *mgRaw;
-	int *mlRaw;
+	int rawLen = size * size;
+	int metadata[2];
+	int mgRaw[rawLen];
+	int mlRaw[rawLen];
 
-	MPI_Recv(&metadata, 2, MPI_INT, initializer, DEFAULT_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-	MPI_Recv(&mgRaw, size * size, MPI_INT, initializer, DEFAULT_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-	MPI_Recv(&mlRaw, size * size, MPI_INT, initializer, DEFAULT_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	MPI_Recv(metadata, 2, MPI_INT, initializer, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	MPI_Recv(mgRaw, size * size, MPI_INT, initializer, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	MPI_Recv(mlRaw, size * size, MPI_INT, initializer, 3, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 	int **mg = new int*[size];
 	int **ml = new int*[size];
@@ -44,15 +48,12 @@ void multiplicator(int initializer, int rank, int collector, int size) {
 	for (int i = metadata[0]; i < metadata[1]; i++) {
 		for (int j = 0; j < size; j++) {
 			for (int k = 0; k < size; k++) {
-				res[i - num][j] += mg[i][k] * ml[k][j];
+				res[i - metadata[0]][j] += mg[i][k] * ml[k][j];
 			}
 		}
 	}
 
-	MultResponse resp;
-	resp.rowNumber = num;
-	resp.rowSize = size;
-	resp.number = metadata[0];
+	int headers[] = {num, metadata[0]};
 
 	int *resRaw = new int[num * size];
 
@@ -62,6 +63,6 @@ void multiplicator(int initializer, int rank, int collector, int size) {
 		}
 	}
 
-	MPI_Send(&resp, sizeof(resp), MPI_CHAR, collector, DEFAULT_TAG, MPI_COMM_WORLD);
-	MPI_Send(&resRaw, num * size, MPI_INT, collector, DEFAULT_TAG, MPI_COMM_WORLD);
+	MPI_Send(headers, 2, MPI_INT, collector, 1, MPI_COMM_WORLD);
+	MPI_Send(resRaw, num * size, MPI_INT, collector, 2, MPI_COMM_WORLD);
 }
