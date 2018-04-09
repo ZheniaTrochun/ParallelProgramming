@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "mpi.h"
 #include "Collector.h"
 #include "Initializer.h"

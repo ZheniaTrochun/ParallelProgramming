@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "mpi.h"
 #include "Collector.h"
-#include "DataBlock.h"
+#include "Data.h"
 #include <iostream>
 
 using namespace std;
@@ -18,9 +17,8 @@ int min(int **m, int size) {
 }
 
 void collect(int *multipliers, int multipliersNum, int rank, int size) {
-	int last = 0;
-
 	int **res = new int*[size];
+
 	for (int i(0); i < size; i++)
 		res[i] = new int[size];
 
